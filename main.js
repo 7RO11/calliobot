@@ -1,5 +1,11 @@
 require("dotenv").config()
-const TEST = false
+// REMEMBER TO CHANGE TEST
+// REMEMBER TO CHANGE TEST
+// REMEMBER TO CHANGE TEST
+// REMEMBER TO CHANGE TEST
+// REMEMBER TO CHANGE TEST
+// REMEMBER TO CHANGE TEST
+const TEST = true
 const { Client, GatewayIntentBits, SlashCommandBuilder, Routes } = require('discord.js');
 const { REST } = require('@discordjs/rest');
 const cron = require('node-cron');
@@ -25,15 +31,15 @@ rest.put(Routes.applicationCommands(clientId), { body: commands })
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 client.once('ready', () => {
-    axios.get(`https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PLfSAyHiioVrgrzyUM0s5Edl04hDK4-F0u&5&pageToken=EAAaB1BUOkNKWUI&key=${process.env.yt}`).then((res) => {
+	cron.schedule("10 8 * * *", () => {
+		axios.get(`https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PLfSAyHiioVrgrzyUM0s5Edl04hDK4-F0u&5&pageToken=EAAaB1BUOkNKWUI&key=${process.env.yt}`).then((res) => {
         data = res.data.items[res.data.items.length - 1];
 		for (let channelId of channels) {
 			let channel = client.channels.cache.get(channelId)
-			cron.schedule("10 8 * * *", () => {
-				channel.send(`https://www.youtube.com/watch?v=${data.snippet.resourceId.videoId} time for your daily dose of caillio cancer`)
-			});
+			channel.send(`https://www.youtube.com/watch?v=${data.snippet.resourceId.videoId} time for your daily dose of caillio cancer`)
 		}
     })
+	});
 });
 
 client.on('interactionCreate', async interaction => {
