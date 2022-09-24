@@ -5,7 +5,7 @@ require("dotenv").config()
 // REMEMBER TO CHANGE TEST
 // REMEMBER TO CHANGE TEST
 // REMEMBER TO CHANGE TEST
-const TEST = true
+const TEST = false
 const { Client, GatewayIntentBits, SlashCommandBuilder, Routes } = require('discord.js');
 const { REST } = require('@discordjs/rest');
 const cron = require('node-cron');
@@ -33,12 +33,14 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 client.once('ready', () => {
 	cron.schedule("10 8 * * *", () => {
 		axios.get(`https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PLfSAyHiioVrgrzyUM0s5Edl04hDK4-F0u&5&pageToken=EAAaB1BUOkNKWUI&key=${process.env.yt}`).then((res) => {
-        data = res.data.items[res.data.items.length - 1];
+		data = res.data.items.filter((item) => {
+			return item.snippet.title !== "Private video"
+		})
 		for (let channelId of channels) {
 			let channel = client.channels.cache.get(channelId)
-			channel.send(`https://www.youtube.com/watch?v=${data.snippet.resourceId.videoId} time for your daily dose of caillio cancer`)
+			channel.send(`https://www.youtube.com/watch?v=${data[data.length - 1].snippet.resourceId.videoId} time for your daily dose of caillio cancer`)
 		}
-    })
+	})
 	});
 });
 
