@@ -1,11 +1,13 @@
 require("dotenv").config()
-const { Client, GatewayIntentBits, Message } = require('discord.js');
+const TEST = false
+const { Client, GatewayIntentBits, SlashCommandBuilder, Routes } = require('discord.js');
 const { REST } = require('@discordjs/rest');
-const { SlashCommandBuilder, Routes } = require('discord.js');
-const clientId = "1020416137395195975"
-var cron = require('node-cron');
+const cron = require('node-cron');
 const axios = require('axios').default;
 const bullshit = require("/Users/thesl/Documents/callio/beta/Wrapper-Offline/wrapper/_ASSETS/database.json")
+const channelGroups = require("./channels.json")
+const clientId = "1020416137395195975"
+const channels = TEST ? channelGroups.devChannel : channelGroups.channels
 
 const commands = [
 	new SlashCommandBuilder().setName('grounded').setDescription('get grounded'),
@@ -23,23 +25,15 @@ rest.put(Routes.applicationCommands(clientId), { body: commands })
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 client.once('ready', () => {
-	const channel = client.channels.cache.get("1019107379293458493")
-	const garbage = client.channels.cache.get("519205600979189762")
-
     axios.get(`https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PLfSAyHiioVrgrzyUM0s5Edl04hDK4-F0u&5&pageToken=EAAaB1BUOkNKWUI&key=${process.env.yt}`).then((res) => {
         data = res.data.items[res.data.items.length - 1];
+		for (let channelId of channels) {
+			let channel = client.channels.cache.get(channelId)
+			cron.schedule("10 8 * * *", () => {
+				channel.send(`https://www.youtube.com/watch?v=${data.snippet.resourceId.videoId} time for your daily dose of caillio cancer`)
+			});
+		}
     })
-
-
-    cron.schedule("10 8 * * *", () => {
-        channel.send(`https://www.youtube.com/watch?v=${data.snippet.resourceId.videoId} time for your daily dose of caillio cancer`)
-		garbage.send(`https://www.youtube.com/watch?v=${data.snippet.resourceId.videoId} time for your daily dose of caillio cancer`)
-    });
-
-	// cron.schedule("29 18 * * *", () => {
-    //     // channel.send(`https://www.youtube.com/watch?v=${data.snippet.resourceId.videoId} time for your daily dose of caillio cancer`)
-	// 	garbage.send(`https://www.youtube.com/watch?v=${data.snippet.resourceId.videoId} time for your daily dose of caillio cancer`)
-    // });
 });
 
 client.on('interactionCreate', async interaction => {
