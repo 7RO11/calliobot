@@ -10,7 +10,8 @@ const { Client, GatewayIntentBits, SlashCommandBuilder, Routes } = require('disc
 const { REST } = require('@discordjs/rest');
 const cron = require('node-cron');
 const axios = require('axios').default;
-const bullshit = require("/Users/thesl/Documents/callio/beta/Wrapper-Offline/wrapper/_ASSETS/database.json")
+const os = process.platform
+const bullshit = os === "linux" ? require("/mnt/c/Users/thesl/Documents/callio/beta/Wrapper-Offline/wrapper/_ASSETS/database.json") : require("/Users/thesl/Documents/callio/beta/Wrapper-Offline/wrapper/_ASSETS/database.json")
 const channelGroups = require("./channels.json")
 const clientId = "1020416137395195975"
 const channels = TEST ? channelGroups.devChannel : channelGroups.channels
