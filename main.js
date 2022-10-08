@@ -45,7 +45,7 @@ client.once('ready', () => {
 	});
 });
 
-client.on('interactionCreate', async interaction => {
+client.on('interactionCreate', interaction => {
 	if (!interaction.isChatInputCommand()) return;
 
     const times = ["planck units", "nanoseconds", "milliseconds", "seconds", "minutes", "hours", "days", "weeks", "month", "years", "decades", "centuries", "millenniums", "eterneties"]
@@ -56,15 +56,15 @@ client.on('interactionCreate', async interaction => {
 	const { commandName } = interaction;
 
 	if (commandName === 'grounded') {
-		await interaction.reply(`how dare you use the grounded command thats fucking it you are grounded grounded grounded for ${randNum} ${randTime}!`);
+		interaction.reply(`how dare you use the grounded command thats fucking it you are grounded grounded grounded for ${randNum} ${randTime}!`);
 	} else if (commandName === 'quote') {
 		let randombull = bullshit.assets[Math.floor(Math.random() * bullshit.assets.length)]
 		while (randombull.title === "Untitled") {
 			randombull = bullshit.assets[Math.floor(Math.random() * bullshit.assets.length)]
 		}
-		await interaction.reply(randombull.title)
+		interaction.reply(randombull.title)
 	} else if (commandName === 'bank') {
-		await interaction.reply(`there is currently ${bullshit.assets.length} possible quotes to pick from`)
+		interaction.reply(`there is currently ${bullshit.assets.length} possible quotes to pick from`)
 	}
 });
 
