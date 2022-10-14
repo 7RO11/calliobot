@@ -33,7 +33,7 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 client.once('ready', () => {
 	cron.schedule("10 8 * * *", () => {
-		axios.get(`https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PLfSAyHiioVrgrzyUM0s5Edl04hDK4-F0u&5&pageToken=EAAaB1BUOkNKWUI&key=${process.env.yt}`).then((res) => {
+		axios.get(`https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PLfSAyHiioVrgrzyUM0s5Edl04hDK4-F0u&5&pageToken=EAAaB1BUOkNNZ0I&key=${process.env.yt}`).then((res) => {
 		data = res.data.items.filter((item) => {
 			return item.snippet.title !== "Private video"
 		})
