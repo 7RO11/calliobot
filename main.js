@@ -13,7 +13,6 @@ const axios = require('axios').default;
 const os = process.platform
 const bullshit = os === "linux" ? require("/mnt/c/Users/thesl/Documents/callio/beta/Wrapper-Offline/wrapper/_ASSETS/database.json") : require("/Users/thesl/Documents/callio/beta/Wrapper-Offline/wrapper/_ASSETS/database.json")
 const channelGroups = require("./channels.json")
-const whitelist = require("./whitelist.json")
 const clientId = "1020416137395195975"
 const channels = TEST ? channelGroups.devChannel : channelGroups.channels
 
@@ -83,7 +82,7 @@ client.on('interactionCreate', interaction => {
 		client.channels.cache.get("1031249645223018648").send(user)
 		interaction.reply(`added "${user}" to whitelist queue`)
 	} else if (commandName === "whitelist") {
-		interaction.reply(whitelist.members.join(", "))
+		import("./whitelist.json", {assert: {type: "json"}}).then((whitelist) => interaction.reply(whitelist.default.members.join(", ")))
 	}
 });
 
