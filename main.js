@@ -13,13 +13,21 @@ const axios = require('axios').default;
 const os = process.platform
 const bullshit = os === "linux" ? require("/mnt/c/Users/thesl/Documents/callio/beta/Wrapper-Offline/wrapper/_ASSETS/database.json") : require("/Users/thesl/Documents/callio/beta/Wrapper-Offline/wrapper/_ASSETS/database.json")
 const channelGroups = require("./channels.json")
+const whitelist = require("./whitelist.json")
 const clientId = "1020416137395195975"
 const channels = TEST ? channelGroups.devChannel : channelGroups.channels
+
+let users = []
 
 const commands = [
 	new SlashCommandBuilder().setName('grounded').setDescription('get grounded'),
 	new SlashCommandBuilder().setName('quote').setDescription('get quoted'),
 	new SlashCommandBuilder().setName('bank').setDescription('get banked'),
+	new SlashCommandBuilder().setName('request').setDescription('get requested').addStringOption(option =>
+		option.setName('username')
+			.setDescription('ur mincecraft username for java version NOT MICROSOFT USERNAME')
+			.setRequired(true)),
+	new SlashCommandBuilder().setName('whitelist').setDescription('get white'),
 ]
 	.map(command => command.toJSON());
 
@@ -65,6 +73,17 @@ client.on('interactionCreate', interaction => {
 		interaction.reply(randombull.title)
 	} else if (commandName === 'bank') {
 		interaction.reply(`there is currently ${bullshit.assets.length} possible quotes to pick from`)
+	} else if (commandName === 'request') {
+		let user = interaction.options.getString("username")
+		if (users.includes(interaction.member.user.username)) {
+			return
+		} else {
+			users.push(interaction.member.user.username)
+		}
+		client.channels.cache.get("1031249645223018648").send(user)
+		interaction.reply(`added "${user}" to whitelist queue`)
+	} else if (commandName === "whitelist") {
+		interaction.reply(whitelist.members.join(", "))
 	}
 });
 
