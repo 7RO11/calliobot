@@ -86,7 +86,7 @@ client.once("ready", () => {
 	cron.schedule("10 8 * * *", () => {
 		axios
 			.get(
-				`https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PLfSAyHiioVrgrzyUM0s5Edl04hDK4-F0u&5&pageToken=EAAaB1BUOkNNZ0I&key=${process.env.yt}`
+				`https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PLfSAyHiioVrgrzyUM0s5Edl04hDK4-F0u&5&pageToken=EAAaB1BUOkNQb0I&key=${process.env.yt}`
 			)
 			.then((res) => {
 				data = res.data.items.filter((item) => {
@@ -101,6 +101,22 @@ client.once("ready", () => {
 				}
 			});
 	});
+	// for getting next page
+	// axios
+	// 	.get(
+	// 		`https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PLfSAyHiioVrgrzyUM0s5Edl04hDK4-F0u&5&pageToken=EAAaB1BUOkNQb0I&key=${process.env.yt}`
+	// 	)
+	// 	.then((res) => {
+	// 		data = res.data.items.filter((item) => {
+	// 			return item.snippet.title !== "Private video";
+	// 		});
+
+	// 		console.log(res)
+	// 		console.log(
+	// 			`https://www.youtube.com/watch?v=${data[data.length - 1].snippet.resourceId.videoId
+	// 			} time for your daily dose of caillio cancer`
+	// 		);
+	// 	});
 });
 
 client.on("interactionCreate", (interaction) => {
@@ -115,7 +131,7 @@ client.on("interactionCreate", (interaction) => {
 		"hours",
 		"days",
 		"weeks",
-		"month",
+		"months",
 		"years",
 		"decades",
 		"centuries",
@@ -142,9 +158,15 @@ client.on("interactionCreate", (interaction) => {
 		// }
 		// interaction.reply(randombull.title)
 	} else if (commandName === "bank") {
-		interaction.reply(
-			`there is currently ${bullshit.assets.length} possible quotes to pick from`
-		);
+		try {
+			Quote.estimatedDocumentCount().then((res) => {
+				interaction.reply(
+					`there is currently ${res} possible quotes to pick from`
+				);
+			})
+		} catch (err) {
+			console.log(err)
+		}
 	}
 	// } else if (commandName === 'request') {
 	// 	let user = interaction.options.getString("username")
