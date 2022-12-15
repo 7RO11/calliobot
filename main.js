@@ -11,6 +11,7 @@ const {
 	GatewayIntentBits,
 	SlashCommandBuilder,
 	Routes,
+	EmbedBuilder,
 } = require("discord.js");
 const { REST } = require("@discordjs/rest");
 const cron = require("node-cron");
@@ -23,6 +24,7 @@ const clientId = "1020416137395195975";
 const channels = TEST ? channelGroups.devChannel : channelGroups.channels;
 
 try {
+	mongoose.set("strictQuery", false)
 	mongoose.connect(process.env.db);
 } catch (err) {
 	console.log(err);
@@ -149,8 +151,68 @@ client.on("interactionCreate", (interaction) => {
 			`how dare you use the grounded command thats fucking it you are grounded grounded grounded for ${randNum} ${randTime}!`
 		);
 	} else if (commandName === "quote") {
+
+
 		getQuote().then((res) => {
-			interaction.reply(res[0].content);
+			let embed = new EmbedBuilder()
+				.setDescription(res[0].content)
+			switch (res[0].name) {
+				case ("Justin (PO)"):
+					embed.setAuthor({ name: `Caillou (${res[0].name})` })
+					embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052733683100045382/callio.png")
+					break
+				case ("Justin (RL)"):
+					embed.setAuthor({ name: `Caillou (${res[0].name})` })
+					embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052733683100045382/callio.png")
+					break
+				case ("Eric"):
+					embed.setAuthor({ name: `Boris (${res[0].name})` })
+					embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052735984384606208/boris.png")
+					break
+				case ("Aditi"):
+					embed.setAuthor({ name: `Dora (${res[0].name})` })
+					embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052736903050436609/dora.PNG")
+					break
+				case ("Joanna"):
+					embed.setAuthor({ name: `Doris / Miss Martin (${res[0].name})` })
+					embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052744530631344128/jo.PNG")
+					break
+				case ("Julie"):
+					embed.setAuthor({ name: `Rosie (${res[0].name})` })
+					embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052744970144055337/rosy.PNG")
+					break
+				case ("Paul"):
+					embed.setAuthor({ name: `Old Boris (${res[0].name})` })
+					embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052750399809015909/oldboris.PNG")
+					break
+				case ("Beth"):
+					embed.setAuthor({ name: `The Principal (${res[0].name})` })
+					embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052750544873201694/prin.PNG")
+					break
+				case ("Saul"):
+					embed.setAuthor({ name: `Cocaine Cody (${res[0].name})` })
+					embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052750693703884950/cody.PNG")
+					break
+				case ("Rich"):
+					embed.setAuthor({ name: `The Cop (${res[0].name})` })
+					embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052750906627731456/cop.PNG")
+					break
+				case ("Mike"):
+					embed.setAuthor({ name: `Classic Caillou (${res[0].name})` })
+					embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052751170340409454/class.PNG")
+					break
+				case ("Tom"):
+					embed.setAuthor({ name: `Peter Griffin (${res[0].name})` })
+					embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052751400699973672/peter.PNG")
+					break
+				default:
+					embed.setAuthor({ name: `${res[0].name}` })
+					embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052744969825292368/unk.PNG")
+
+			}
+
+			interaction.reply("​")
+			interaction.channel.send({ embeds: [embed] })
 		});
 		// let randombull = bullshit.assets[Math.floor(Math.random() * bullshit.assets.length)]
 		// while (randombull.title === "Untitled") {
