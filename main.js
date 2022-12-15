@@ -155,7 +155,7 @@ client.on("interactionCreate", (interaction) => {
 
 		getQuote().then((res) => {
 			let embed = new EmbedBuilder()
-				.setDescription(res[0].content)
+				.setDescription(`"*${res[0].content}*"`)
 			switch (res[0].name) {
 				case ("Justin (PO)"):
 					embed.setAuthor({ name: `Caillou (${res[0].name})` })
