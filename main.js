@@ -155,7 +155,7 @@ client.on("interactionCreate", (interaction) => {
 
 		getQuote().then((res) => {
 			let embed = new EmbedBuilder()
-				.setDescription(`"*${res[0].content}*"`)
+				.setDescription(`"*${res[0].content.trim()}*"`)
 			switch (res[0].name) {
 				case ("Justin (PO)"):
 					embed.setAuthor({ name: `Caillou (${res[0].name})` })
@@ -211,8 +211,7 @@ client.on("interactionCreate", (interaction) => {
 
 			}
 
-			interaction.reply("​")
-			interaction.channel.send({ embeds: [embed] })
+			interaction.reply({ embeds: [embed] })
 		});
 		// let randombull = bullshit.assets[Math.floor(Math.random() * bullshit.assets.length)]
 		// while (randombull.title === "Untitled") {
