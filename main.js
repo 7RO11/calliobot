@@ -18,7 +18,10 @@ const cron = require("node-cron");
 const axios = require("axios").default;
 const mongoose = require("mongoose");
 const os = process.platform;
+// 1.3.0 location
 // const bullshit = os === "linux" ? require("/mnt/c/Users/thesl/Documents/callio/beta/Wrapper-Offline/wrapper/_ASSETS/database.json") : require("/Users/thesl/Documents/callio/beta/Wrapper-Offline/wrapper/_ASSETS/database.json")
+// pre2.0.0 location
+// const bullshit = require("/Users/thesl/Documents/callio/Wrapper Offline-win32-x64/resources/app/_SAVED/database.json")
 const channelGroups = require("./channels.json");
 const clientId = "1020416137395195975";
 const channels = TEST ? channelGroups.devChannel : channelGroups.channels;
@@ -46,7 +49,7 @@ async function getQuote() {
 }
 
 //for transferring the quotes from the local database.json prolly use it later
-
+// console.log(bullshit.assets)
 // for (const item in bullshit.assets) {
 // 	if (bullshit.assets[item].title.match(/.*]/g) === null) {
 // 		continue
@@ -189,7 +192,7 @@ client.on("interactionCreate", (interaction) => {
 					embed.setAuthor({ name: `The Principal (${res[0].name})` })
 					embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052750544873201694/prin.PNG")
 					break
-				case ("Saul"):
+				case ("saul"):
 					embed.setAuthor({ name: `Cocaine Cody (${res[0].name})` })
 					embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052750693703884950/cody.PNG")
 					break
@@ -204,6 +207,18 @@ client.on("interactionCreate", (interaction) => {
 				case ("Tom"):
 					embed.setAuthor({ name: `Peter Griffin (${res[0].name})` })
 					embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052751400699973672/peter.PNG")
+					break
+				case ("Ivy (PO)"):
+					embed.setAuthor({ name: `Lily (${res[0].name})` })
+					embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1078459687634227280/lily.PNG")
+					break
+				case ("Evan"):
+					embed.setAuthor({ name: `Little Bill (${res[0].name})` })
+					embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1078461336809381918/littlebill.PNG")
+					break
+				case ("Dave"):
+					embed.setAuthor({ name: `Dadish Child (${res[0].name})` })
+					embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1078461317347811429/dadishchild.PNG")
 					break
 				default:
 					embed.setAuthor({ name: `${res[0].name}` })
