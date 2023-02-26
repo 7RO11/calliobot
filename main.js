@@ -39,13 +39,31 @@ const quoteSchema = new mongoose.Schema({
 });
 
 const Quote = mongoose.model("Quote", quoteSchema);
-async function getQuote() {
+async function getQuote(amount) {
 	try {
-		const quote = await Quote.aggregate([{ $sample: { size: 1 } }]);
+		const quote = await Quote.aggregate([{ $sample: { size: amount } }]);
 		return quote;
 	} catch (err) {
 		console.log(err);
 	}
+}
+
+function boris(embed, item) {
+	embed.setAuthor({ name: `Boris (${item.name})` })
+	embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052735984384606208/boris.png")
+	return embed
+}
+
+function callio(embed, item) {
+	embed.setAuthor({ name: `Caillou (${item.name})` })
+	embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052733683100045382/callio.png")
+	return embed
+}
+
+function peter(embed, item) {
+	embed.setAuthor({ name: `Peter Griffin (${item.name})` })
+	embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052751400699973672/peter.PNG")
+	return embed
 }
 
 //for transferring the quotes from the local database.json prolly use it later
@@ -68,6 +86,9 @@ async function getQuote() {
 const commands = [
 	new SlashCommandBuilder().setName("grounded").setDescription("get grounded"),
 	new SlashCommandBuilder().setName("quote").setDescription("get quoted"),
+	new SlashCommandBuilder().setName("quoteboris").setDescription("get boris").setDescription("what a guy"),
+	new SlashCommandBuilder().setName("quotecallio").setDescription("get callio").setDescription("bald beta"),
+	new SlashCommandBuilder().setName("quotepeter").setDescription("get peter").setDescription("fat ass"),
 	new SlashCommandBuilder().setName("bank").setDescription("get banked"),
 	// new SlashCommandBuilder().setName('request').setDescription('get requested').addStringOption(option =>
 	// 	option.setName('username')
@@ -156,21 +177,18 @@ client.on("interactionCreate", (interaction) => {
 	} else if (commandName === "quote") {
 
 
-		getQuote().then((res) => {
+		getQuote(1).then((res) => {
 			let embed = new EmbedBuilder()
 				.setDescription(`"*${res[0].content.trim()}*"`)
 			switch (res[0].name) {
 				case ("Justin (PO)"):
-					embed.setAuthor({ name: `Caillou (${res[0].name})` })
-					embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052733683100045382/callio.png")
+					callio(embed, res[0])
 					break
 				case ("Justin (RL)"):
-					embed.setAuthor({ name: `Caillou (${res[0].name})` })
-					embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052733683100045382/callio.png")
+					callio(embed, res[0])
 					break
 				case ("Eric"):
-					embed.setAuthor({ name: `Boris (${res[0].name})` })
-					embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052735984384606208/boris.png")
+					boris(embed, res[0])
 					break
 				case ("Aditi"):
 					embed.setAuthor({ name: `Dora (${res[0].name})` })
@@ -205,8 +223,7 @@ client.on("interactionCreate", (interaction) => {
 					embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052751170340409454/class.PNG")
 					break
 				case ("Tom"):
-					embed.setAuthor({ name: `Peter Griffin (${res[0].name})` })
-					embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052751400699973672/peter.PNG")
+					peter(embed, res[0])
 					break
 				case ("Ivy (PO)"):
 					embed.setAuthor({ name: `Lily (${res[0].name})` })
@@ -240,6 +257,57 @@ client.on("interactionCreate", (interaction) => {
 					`there is currently ${res} possible quotes to pick from`
 				);
 			})
+		} catch (err) {
+			console.log(err)
+		}
+	} else if (commandName === "quoteboris") {
+		try {
+			getQuote(10).then((res) => {
+				for (const item of res) {
+					if (item.name === "Eric") {
+						let embed = new EmbedBuilder()
+							.setDescription(`"*${item.content.trim()}*"`)
+						return interaction.reply({ embeds: [boris(embed, item)] })
+					}
+				}
+				interaction.reply({ content: 'no', ephemeral: true });
+			})
+
+
+		} catch (err) {
+			console.log(err)
+		}
+	} else if (commandName === "quotecallio") {
+		try {
+			getQuote(10).then((res) => {
+				for (const item of res) {
+					if (item.name === "Justin (RL)" || item.name === "Justin (PO)") {
+						let embed = new EmbedBuilder()
+							.setDescription(`"*${item.content.trim()}*"`)
+						return interaction.reply({ embeds: [callio(embed, item)] })
+					}
+				}
+				interaction.reply({ content: 'no', ephemeral: true });
+			})
+
+
+		} catch (err) {
+			console.log(err)
+		}
+	} else if (commandName === "quotepeter") {
+		try {
+			getQuote(50).then((res) => {
+				for (const item of res) {
+					if (item.name === "Tom") {
+						let embed = new EmbedBuilder()
+							.setDescription(`"*${item.content.trim()}*"`)
+						return interaction.reply({ embeds: [peter(embed, item)] })
+					}
+				}
+				interaction.reply({ content: 'no', ephemeral: true });
+			})
+
+
 		} catch (err) {
 			console.log(err)
 		}
