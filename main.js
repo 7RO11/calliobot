@@ -349,7 +349,7 @@ client.on("interactionCreate", (interaction) => {
 		}
 	} else if (commandName === "quoteboris") {
 		try {
-			getQuote(10).then((res) => {
+			getQuote(8000).then((res) => {
 				for (const item of res) {
 					if (item.name === "Eric") {
 						let embed = new EmbedBuilder()
@@ -366,7 +366,7 @@ client.on("interactionCreate", (interaction) => {
 		}
 	} else if (commandName === "quotecallio") {
 		try {
-			getQuote(10).then((res) => {
+			getQuote(8000).then((res) => {
 				for (const item of res) {
 					if (item.name === "Justin (RL)" || item.name === "Justin (PO)") {
 						let embed = new EmbedBuilder()
@@ -383,7 +383,7 @@ client.on("interactionCreate", (interaction) => {
 		}
 	} else if (commandName === "quotepeter") {
 		try {
-			getQuote(50).then((res) => {
+			getQuote(8000).then((res) => {
 				for (const item of res) {
 					if (item.name === "Tom") {
 						let embed = new EmbedBuilder()
@@ -400,7 +400,7 @@ client.on("interactionCreate", (interaction) => {
 		} 
 	} else if (commandName === "quotedora") {
 		try {
-			getQuote(50).then((res) => {
+			getQuote(8000).then((res) => {
 				for (const item of res) {
 					if (item.name === "Aditi") {
 						let embed = new EmbedBuilder()
@@ -416,7 +416,7 @@ client.on("interactionCreate", (interaction) => {
 	
 } else if (commandName === "quotemoris") {
 	try {
-		getQuote(50).then((res) => {
+		getQuote(8000).then((res) => {
 			for (const item of res) {
 				if (item.name === "Joanna") {
 					let embed = new EmbedBuilder()
@@ -432,7 +432,7 @@ client.on("interactionCreate", (interaction) => {
 
 } else if (commandName === "quoterosy") {
 	try {
-		getQuote(50).then((res) => {
+		getQuote(8000).then((res) => {
 			for (const item of res) {
 				if (item.name === "Julie") {
 					let embed = new EmbedBuilder()
@@ -448,7 +448,7 @@ client.on("interactionCreate", (interaction) => {
 
 } else if (commandName === "quoteoldboris") {
 	try {
-		getQuote(50).then((res) => {
+		getQuote(8000).then((res) => {
 			for (const item of res) {
 				if (item.name === "Paul") {
 					let embed = new EmbedBuilder()
@@ -464,7 +464,7 @@ client.on("interactionCreate", (interaction) => {
 
 } else if (commandName === "quoteprincipal") {
 	try {
-		getQuote(50).then((res) => {
+		getQuote(8000).then((res) => {
 			for (const item of res) {
 				if (item.name === "Beth") {
 					let embed = new EmbedBuilder()
@@ -480,7 +480,7 @@ client.on("interactionCreate", (interaction) => {
 
 } else if (commandName === "quotecody") {
 	try {
-		getQuote(50).then((res) => {
+		getQuote(8000).then((res) => {
 			for (const item of res) {
 				if (item.name === "saul") {
 					let embed = new EmbedBuilder()
@@ -496,7 +496,7 @@ client.on("interactionCreate", (interaction) => {
 
 } else if (commandName === "quotecop") {
 	try {
-		getQuote(50).then((res) => {
+		getQuote(8000).then((res) => {
 			for (const item of res) {
 				if (item.name === "Rich") {
 					let embed = new EmbedBuilder()
@@ -512,7 +512,7 @@ client.on("interactionCreate", (interaction) => {
 
 } else if (commandName === "quotedemonchild") {
 	try {
-		getQuote(50).then((res) => {
+		getQuote(8000).then((res) => {
 			for (const item of res) {
 				if (item.name === "Mike") {
 					let embed = new EmbedBuilder()
@@ -528,7 +528,7 @@ client.on("interactionCreate", (interaction) => {
 
 } else if (commandName === "quotelily") {
 	try {
-		getQuote(50).then((res) => {
+		getQuote(8000).then((res) => {
 			for (const item of res) {
 				if (item.name === "Ivy (PO)" || item.name === "Ivy (RL)") {
 					let embed = new EmbedBuilder()
@@ -544,7 +544,7 @@ client.on("interactionCreate", (interaction) => {
 
 } else if (commandName === "quotebill") {
 	try {
-		getQuote(50).then((res) => {
+		getQuote(8000).then((res) => {
 			for (const item of res) {
 				if (item.name === "Evan") {
 					let embed = new EmbedBuilder()
@@ -560,7 +560,7 @@ client.on("interactionCreate", (interaction) => {
 
 } else if (commandName === "quotedaddy") {
 	try {
-		getQuote(50).then((res) => {
+		getQuote(8000).then((res) => {
 			for (const item of res) {
 				if (item.name === "Dave") {
 					let embed = new EmbedBuilder()
@@ -576,7 +576,7 @@ client.on("interactionCreate", (interaction) => {
 
 } else if (commandName === "quoteunk") {
 	try {
-		getQuote(50).then((res) => {
+		getQuote(8000).then((res) => {
 			for (const item of res) {
 				if (names.includes(item.name)) {
 					let embed = new EmbedBuilder()
