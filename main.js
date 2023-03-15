@@ -25,6 +25,7 @@ const os = process.platform;
 const channelGroups = require("./channels.json");
 const clientId = "1020416137395195975";
 const channels = TEST ? channelGroups.devChannel : channelGroups.channels;
+const names = ["Eric", "Justin (PO)", "Justin (RL)", "Tom", "Aditi", "Joanna", "Julie", "Paul", "Beth", "saul", "Mike", "Ivy (RL)", "Ivy (PO)", "Evan", "Dave"]
 
 try {
 	mongoose.set("strictQuery", false)
@@ -66,6 +67,78 @@ function peter(embed, item) {
 	return embed
 }
 
+function moris(embed, item) {
+	embed.setAuthor({ name: `Doris / Miss Martin (${item.name})` })
+	embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052744530631344128/jo.PNG")
+	return embed
+}
+
+function rosy(embed, item) {
+	embed.setAuthor({ name: `Rosie (${item.name})` })
+	embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052744970144055337/rosy.PNG")
+	return embed
+}
+
+function betterBoris(embed, item) {
+	embed.setAuthor({ name: `Old Boris (${item.name})` })
+	embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052750399809015909/oldboris.PNG")
+	return embed
+}
+
+function prince(embed, item) {
+	embed.setAuthor({ name: `The Principal (${item.name})` })
+	embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052750544873201694/prin.PNG")
+	return embed
+}
+
+function dora(embed, item) {
+	embed.setAuthor({ name: `Dora (${item.name})` })
+	embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052736903050436609/dora.PNG")
+	return embed
+}
+
+function coke(embed, item) {
+	embed.setAuthor({ name: `Cocaine Cody (${item.name})` })
+	embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052750693703884950/cody.PNG")
+	return embed
+}
+
+function cop(embed, item) {
+	embed.setAuthor({ name: `The Cop (${item.name})` })
+	embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052750906627731456/cop.PNG")
+	return embed
+}
+
+function demon_child(embed, item) {
+	embed.setAuthor({ name: `Classic Caillou (${item.name})` })
+	embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052751170340409454/class.PNG")
+	return embed
+}
+
+function lily(embed, item) {
+	embed.setAuthor({ name: `Lily (${item.name})` })
+	embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1078459687634227280/lily.PNG")
+	return embed
+}
+
+function daddy(embed, item) {
+	embed.setAuthor({ name: `Dadish Child (${item.name})` })
+	embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1078461317347811429/dadishchild.PNG")
+	return embed
+}
+
+function bill(embed, item) {
+	embed.setAuthor({ name: `Little Bill (${item.name})` })
+	embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1078461336809381918/littlebill.PNG")
+	return embed
+}
+
+function unk(embed, item) {
+	embed.setAuthor({ name: `${item.name}` })
+	embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052744969825292368/unk.PNG")
+	return embed
+}
+
 //for transferring the quotes from the local database.json prolly use it later
 // console.log(bullshit.assets)
 // for (const item in bullshit.assets) {
@@ -86,9 +159,21 @@ function peter(embed, item) {
 const commands = [
 	new SlashCommandBuilder().setName("grounded").setDescription("get grounded"),
 	new SlashCommandBuilder().setName("quote").setDescription("get quoted"),
-	new SlashCommandBuilder().setName("quoteboris").setDescription("get boris").setDescription("what a guy"),
-	new SlashCommandBuilder().setName("quotecallio").setDescription("get callio").setDescription("bald beta"),
-	new SlashCommandBuilder().setName("quotepeter").setDescription("get peter").setDescription("fat ass"),
+	new SlashCommandBuilder().setName("quoteboris").setDescription("what a guy"),
+	new SlashCommandBuilder().setName("quotecallio").setDescription("bald beta"),
+	new SlashCommandBuilder().setName("quotepeter").setDescription("fat ass"),
+	new SlashCommandBuilder().setName("quotedora").setDescription("green card"),
+	new SlashCommandBuilder().setName("quotemoris").setDescription("idk who this is"),
+	new SlashCommandBuilder().setName("quoterosy").setDescription("ginger ho"),
+	new SlashCommandBuilder().setName("quoteoldboris").setDescription("the better version"),
+	new SlashCommandBuilder().setName("quoteprincipal").setDescription("uwu"),
+	new SlashCommandBuilder().setName("quotecody").setDescription("i love crack"),
+	new SlashCommandBuilder().setName("quotecop").setDescription("oops i killed a man"),
+	new SlashCommandBuilder().setName("quotedemonchild").setDescription("hell"),
+	new SlashCommandBuilder().setName("quotelily").setDescription("blondy"),
+	new SlashCommandBuilder().setName("quotebill").setDescription("im just a bill"),
+	new SlashCommandBuilder().setName("quotedaddy").setDescription("im bout to leave to get some milk"),
+	new SlashCommandBuilder().setName("quoteunk").setDescription("succ"),
 	new SlashCommandBuilder().setName("bank").setDescription("get banked"),
 	// new SlashCommandBuilder().setName('request').setDescription('get requested').addStringOption(option =>
 	// 	option.setName('username')
@@ -191,56 +276,46 @@ client.on("interactionCreate", (interaction) => {
 					boris(embed, res[0])
 					break
 				case ("Aditi"):
-					embed.setAuthor({ name: `Dora (${res[0].name})` })
-					embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052736903050436609/dora.PNG")
+					dora(embed, res[0])
 					break
 				case ("Joanna"):
-					embed.setAuthor({ name: `Doris / Miss Martin (${res[0].name})` })
-					embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052744530631344128/jo.PNG")
+					moris(embed, res[0])
 					break
 				case ("Julie"):
-					embed.setAuthor({ name: `Rosie (${res[0].name})` })
-					embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052744970144055337/rosy.PNG")
+					rosy(embed, res[0])
 					break
 				case ("Paul"):
-					embed.setAuthor({ name: `Old Boris (${res[0].name})` })
-					embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052750399809015909/oldboris.PNG")
+					betterBoris(embed, res[0])
 					break
 				case ("Beth"):
-					embed.setAuthor({ name: `The Principal (${res[0].name})` })
-					embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052750544873201694/prin.PNG")
+					prince(embed, res[0])
 					break
 				case ("saul"):
-					embed.setAuthor({ name: `Cocaine Cody (${res[0].name})` })
-					embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052750693703884950/cody.PNG")
+					coke(embed, res[0])
 					break
 				case ("Rich"):
-					embed.setAuthor({ name: `The Cop (${res[0].name})` })
-					embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052750906627731456/cop.PNG")
+					cop(embed, res[0])
 					break
 				case ("Mike"):
-					embed.setAuthor({ name: `Classic Caillou (${res[0].name})` })
-					embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052751170340409454/class.PNG")
+					demon_child(embed, res[0])
 					break
 				case ("Tom"):
 					peter(embed, res[0])
 					break
 				case ("Ivy (PO)"):
-					embed.setAuthor({ name: `Lily (${res[0].name})` })
-					embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1078459687634227280/lily.PNG")
+					lily(embed, res[0])
+					break
+				case ("Ivy (RL)"):
+					lily(embed, res[0])
 					break
 				case ("Evan"):
-					embed.setAuthor({ name: `Little Bill (${res[0].name})` })
-					embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1078461336809381918/littlebill.PNG")
+					bill(embed, res[0])
 					break
 				case ("Dave"):
-					embed.setAuthor({ name: `Dadish Child (${res[0].name})` })
-					embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1078461317347811429/dadishchild.PNG")
+					daddy(embed, res[0])
 					break
 				default:
-					embed.setAuthor({ name: `${res[0].name}` })
-					embed.setThumbnail("https://cdn.discordapp.com/attachments/1020421954462818304/1052744969825292368/unk.PNG")
-
+					unk(embed, res[0])
 			}
 
 			interaction.reply({ embeds: [embed] })
@@ -250,6 +325,18 @@ client.on("interactionCreate", (interaction) => {
 		// 	randombull = bullshit.assets[Math.floor(Math.random() * bullshit.assets.length)]
 		// }
 		// interaction.reply(randombull.title)
+		// } else if (commandName === 'request') {
+	// 	let user = interaction.options.getString("username")
+	// 	if (users.includes(interaction.member.user.username)) {
+	// 		return
+	// 	} else {
+	// 		users.push(interaction.member.user.username)
+	// 	}
+	// 	client.channels.cache.get("1031249645223018648").send(user)
+	// 	interaction.reply(`added "${user}" to whitelist queue`)
+	// } else if (commandName === "whitelist") {
+	// 	import("./whitelist.json", {assert: {type: "json"}}).then((whitelist) => interaction.reply(whitelist.default.members.join(", ")))
+	// }
 	} else if (commandName === "bank") {
 		try {
 			Quote.estimatedDocumentCount().then((res) => {
@@ -262,7 +349,7 @@ client.on("interactionCreate", (interaction) => {
 		}
 	} else if (commandName === "quoteboris") {
 		try {
-			getQuote(10).then((res) => {
+			getQuote(8000).then((res) => {
 				for (const item of res) {
 					if (item.name === "Eric") {
 						let embed = new EmbedBuilder()
@@ -279,7 +366,7 @@ client.on("interactionCreate", (interaction) => {
 		}
 	} else if (commandName === "quotecallio") {
 		try {
-			getQuote(10).then((res) => {
+			getQuote(8000).then((res) => {
 				for (const item of res) {
 					if (item.name === "Justin (RL)" || item.name === "Justin (PO)") {
 						let embed = new EmbedBuilder()
@@ -296,7 +383,7 @@ client.on("interactionCreate", (interaction) => {
 		}
 	} else if (commandName === "quotepeter") {
 		try {
-			getQuote(50).then((res) => {
+			getQuote(8000).then((res) => {
 				for (const item of res) {
 					if (item.name === "Tom") {
 						let embed = new EmbedBuilder()
@@ -310,20 +397,199 @@ client.on("interactionCreate", (interaction) => {
 
 		} catch (err) {
 			console.log(err)
+		} 
+	} else if (commandName === "quotedora") {
+		try {
+			getQuote(8000).then((res) => {
+				for (const item of res) {
+					if (item.name === "Aditi") {
+						let embed = new EmbedBuilder()
+							.setDescription(`"*${item.content.trim()}*"`)
+						return interaction.reply({ embeds: [dora(embed, item)] })
+					}
+				}
+				interaction.reply({ content: 'no', ephemeral: true });
+			})
+		} catch (err) {
+			console.log(err)
 		}
+	
+} else if (commandName === "quotemoris") {
+	try {
+		getQuote(8000).then((res) => {
+			for (const item of res) {
+				if (item.name === "Joanna") {
+					let embed = new EmbedBuilder()
+						.setDescription(`"*${item.content.trim()}*"`)
+					return interaction.reply({ embeds: [moris(embed, item)] })
+				}
+			}
+			interaction.reply({ content: 'no', ephemeral: true });
+		})
+	} catch (err) {
+		console.log(err)
 	}
-	// } else if (commandName === 'request') {
-	// 	let user = interaction.options.getString("username")
-	// 	if (users.includes(interaction.member.user.username)) {
-	// 		return
-	// 	} else {
-	// 		users.push(interaction.member.user.username)
-	// 	}
-	// 	client.channels.cache.get("1031249645223018648").send(user)
-	// 	interaction.reply(`added "${user}" to whitelist queue`)
-	// } else if (commandName === "whitelist") {
-	// 	import("./whitelist.json", {assert: {type: "json"}}).then((whitelist) => interaction.reply(whitelist.default.members.join(", ")))
-	// }
-});
+
+} else if (commandName === "quoterosy") {
+	try {
+		getQuote(8000).then((res) => {
+			for (const item of res) {
+				if (item.name === "Julie") {
+					let embed = new EmbedBuilder()
+						.setDescription(`"*${item.content.trim()}*"`)
+					return interaction.reply({ embeds: [rosy(embed, item)] })
+				}
+			}
+			interaction.reply({ content: 'no', ephemeral: true });
+		})
+	} catch (err) {
+		console.log(err)
+	}
+
+} else if (commandName === "quoteoldboris") {
+	try {
+		getQuote(8000).then((res) => {
+			for (const item of res) {
+				if (item.name === "Paul") {
+					let embed = new EmbedBuilder()
+						.setDescription(`"*${item.content.trim()}*"`)
+					return interaction.reply({ embeds: [betterBoris(embed, item)] })
+				}
+			}
+			interaction.reply({ content: 'no', ephemeral: true });
+		})
+	} catch (err) {
+		console.log(err)
+	}
+
+} else if (commandName === "quoteprincipal") {
+	try {
+		getQuote(8000).then((res) => {
+			for (const item of res) {
+				if (item.name === "Beth") {
+					let embed = new EmbedBuilder()
+						.setDescription(`"*${item.content.trim()}*"`)
+					return interaction.reply({ embeds: [prince(embed, item)] })
+				}
+			}
+			interaction.reply({ content: 'no', ephemeral: true });
+		})
+	} catch (err) {
+		console.log(err)
+	}
+
+} else if (commandName === "quotecody") {
+	try {
+		getQuote(8000).then((res) => {
+			for (const item of res) {
+				if (item.name === "saul") {
+					let embed = new EmbedBuilder()
+						.setDescription(`"*${item.content.trim()}*"`)
+					return interaction.reply({ embeds: [coke(embed, item)] })
+				}
+			}
+			interaction.reply({ content: 'no', ephemeral: true });
+		})
+	} catch (err) {
+		console.log(err)
+	}
+
+} else if (commandName === "quotecop") {
+	try {
+		getQuote(8000).then((res) => {
+			for (const item of res) {
+				if (item.name === "Rich") {
+					let embed = new EmbedBuilder()
+						.setDescription(`"*${item.content.trim()}*"`)
+					return interaction.reply({ embeds: [cop(embed, item)] })
+				}
+			}
+			interaction.reply({ content: 'no', ephemeral: true });
+		})
+	} catch (err) {
+		console.log(err)
+	}
+
+} else if (commandName === "quotedemonchild") {
+	try {
+		getQuote(8000).then((res) => {
+			for (const item of res) {
+				if (item.name === "Mike") {
+					let embed = new EmbedBuilder()
+						.setDescription(`"*${item.content.trim()}*"`)
+					return interaction.reply({ embeds: [demon_child(embed, item)] })
+				}
+			}
+			interaction.reply({ content: 'no', ephemeral: true });
+		})
+	} catch (err) {
+		console.log(err)
+	}
+
+} else if (commandName === "quotelily") {
+	try {
+		getQuote(8000).then((res) => {
+			for (const item of res) {
+				if (item.name === "Ivy (PO)" || item.name === "Ivy (RL)") {
+					let embed = new EmbedBuilder()
+						.setDescription(`"*${item.content.trim()}*"`)
+					return interaction.reply({ embeds: [lily(embed, item)] })
+				}
+			}
+			interaction.reply({ content: 'no', ephemeral: true });
+		})
+	} catch (err) {
+		console.log(err)
+	}
+
+} else if (commandName === "quotebill") {
+	try {
+		getQuote(8000).then((res) => {
+			for (const item of res) {
+				if (item.name === "Evan") {
+					let embed = new EmbedBuilder()
+						.setDescription(`"*${item.content.trim()}*"`)
+					return interaction.reply({ embeds: [bill(embed, item)] })
+				}
+			}
+			interaction.reply({ content: 'no', ephemeral: true });
+		})
+	} catch (err) {
+		console.log(err)
+	}
+
+} else if (commandName === "quotedaddy") {
+	try {
+		getQuote(8000).then((res) => {
+			for (const item of res) {
+				if (item.name === "Dave") {
+					let embed = new EmbedBuilder()
+						.setDescription(`"*${item.content.trim()}*"`)
+					return interaction.reply({ embeds: [daddy(embed, item)] })
+				}
+			}
+			interaction.reply({ content: 'no', ephemeral: true });
+		})
+	} catch (err) {
+		console.log(err)
+	}
+
+} else if (commandName === "quoteunk") {
+	try {
+		getQuote(8000).then((res) => {
+			for (const item of res) {
+				if (names.includes(item.name)) {
+					let embed = new EmbedBuilder()
+						.setDescription(`"*${item.content.trim()}*"`)
+					return interaction.reply({ embeds: [unk(embed, item)] })
+				}
+			}
+			interaction.reply({ content: 'no', ephemeral: true });
+		})
+	} catch (err) {
+		console.log(err)
+	}
+
+}});
 
 client.login(process.env.token);
