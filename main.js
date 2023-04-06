@@ -197,7 +197,7 @@ client.once("ready", () => {
 	cron.schedule("10 8 * * *", () => {
 		axios
 			.get(
-				`https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PLfSAyHiioVrgrzyUM0s5Edl04hDK4-F0u&5&pageToken=EAAaB1BUOkNLd0M&key=${process.env.yt}`
+				`https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PLfSAyHiioVrgrzyUM0s5Edl04hDK4-F0u&5&pageToken=EAAaB1BUOkNONEM&key=${process.env.yt}`
 			)
 			.then((res) => {
 				data = res.data.items.filter((item) => {
@@ -207,27 +207,28 @@ client.once("ready", () => {
 					let channel = client.channels.cache.get(channelId);
 					channel.send(
 						`https://www.youtube.com/watch?v=${data[data.length - 1].snippet.resourceId.videoId
-						} time for your daily dose of caillio cancer`
+						} wake up honey new callio just dropped`
 					);
 				}
 			});
 	});
 	// for getting next page
-	// 	axios
-	// 		.get(
-	// 			`https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PLfSAyHiioVrgrzyUM0s5Edl04hDK4-F0u&5&pageToken=EAAaB1BUOkNLd0M&key=${process.env.yt}`
-	// 		)
-	// 		.then((res) => {
-	// 			data = res.data.items.filter((item) => {
-	// 				return item.snippet.title !== "Private video";
-	// 			});
+		// axios
+		// 	.get(
+		// 		`https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PLfSAyHiioVrgrzyUM0s5Edl04hDK4-F0u&5&pageToken=EAAaB1BUOkNONEM&key=${process.env.yt}`
+		// 	)
+		// 	.then((res) => {
+				// console.log(res.data.items)
+				// data = res.data.items.filter((item) => {
+				// 	return item.snippet.title !== "Private video";
+				// });
 
-	// 			console.log(res)
-	// 			console.log(
-	// 				`https://www.youtube.com/watch?v=${data[data.length - 1].snippet.resourceId.videoId
-	// 				} time for your daily dose of caillio cancer`
-	// 			);
-	// 		});
+				// console.log(res)
+				// console.log(
+				// 	`https://www.youtube.com/watch?v=${data[data.length - 1].snippet.resourceId.videoId
+				// 	} time for your daily dose of caillio cancer`
+				// );
+			// });
 });
 
 client.on("interactionCreate", (interaction) => {
