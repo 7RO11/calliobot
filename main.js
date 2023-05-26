@@ -5,7 +5,7 @@ require("dotenv").config();
 // REMEMBER TO CHANGE TEST
 // REMEMBER TO CHANGE TEST
 // REMEMBER TO CHANGE TEST
-const TEST = true;
+const TEST = false;
 const {
 	Client,
 	GatewayIntentBits,
