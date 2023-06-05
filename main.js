@@ -189,7 +189,7 @@ rest
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 client.once("ready", () => {
-	cron.schedule("3 8 * * *", () => {
+	cron.schedule("10 8 * * *", () => {
 		axios
 			.get(
 				`https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=UC2bso7dShHmrlH9EzGyH-CQ&maxResults=1&order=date&type=video&key=${process.env.yt}`
@@ -205,7 +205,7 @@ client.once("ready", () => {
 				}
 			});
 	});
-	cron.schedule("3 16 * * *", () => {
+	cron.schedule("10 16 * * *", () => {
 		axios
 			.get(
 				`https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=UC2bso7dShHmrlH9EzGyH-CQ&maxResults=1&order=date&type=video&key=${process.env.yt}`
