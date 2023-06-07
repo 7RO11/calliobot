@@ -175,6 +175,8 @@ const commands = [
 	new SlashCommandBuilder().setName("quotedaddy").setDescription("im bout to leave to get some milk"),
 	new SlashCommandBuilder().setName("quoteunk").setDescription("succ"),
 	new SlashCommandBuilder().setName("bank").setDescription("get banked"),
+	new SlashCommandBuilder().setName("tenor").setDescription("finally").addStringOption(option =>
+		option.setName('url').setDescription('sus').setRequired(true)),
 ].map((command) => command.toJSON());
 
 const rest = new REST({ version: "10" }).setToken(process.env.token);
@@ -583,6 +585,16 @@ client.on("interactionCreate", (interaction) => {
 		console.log(err)
 	}
 
-}});
+} else if (commandName === "tenor") {
+	try {
+		const url = interaction.options.getString("url");
+		if (url.startsWith("https://tenor.com/view/")) {
+			interaction.reply(url)
+		} else {
+			interaction.reply({ content: "sus", ephemeral: true });
+		}
+	} catch (err) {
+		console.log(err)
+	}}});
 
 client.login(process.env.token);
