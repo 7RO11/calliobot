@@ -191,7 +191,7 @@ rest
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 client.once("ready", () => {
-	cron.schedule("10 8 * * *", () => {
+	cron.schedule("15 8 * * *", () => {
 		axios
 			.get(
 				`https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=UC2bso7dShHmrlH9EzGyH-CQ&maxResults=1&order=date&type=video&key=${process.env.yt}`
@@ -207,22 +207,22 @@ client.once("ready", () => {
 				}
 			});
 	});
-	cron.schedule("10 16 * * *", () => {
-		axios
-			.get(
-				`https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=UC2bso7dShHmrlH9EzGyH-CQ&maxResults=1&order=date&type=video&key=${process.env.yt}`
-			)
-			.then((res) => {
-				let data = res.data.items
-				for (let channelId of channels) {
-					let channel = client.channels.cache.get(channelId);
-					channel.send(
-						`https://www.youtube.com/watch?v=${data[data.length - 1].id.videoId
-						} wake up honey new callio just dropped`
-					);
-				}
-			});
-	});
+	// cron.schedule("10 16 * * *", () => {
+	// 	axios
+	// 		.get(
+	// 			`https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=UC2bso7dShHmrlH9EzGyH-CQ&maxResults=1&order=date&type=video&key=${process.env.yt}`
+	// 		)
+	// 		.then((res) => {
+	// 			let data = res.data.items
+	// 			for (let channelId of channels) {
+	// 				let channel = client.channels.cache.get(channelId);
+	// 				channel.send(
+	// 					`https://www.youtube.com/watch?v=${data[data.length - 1].id.videoId
+	// 					} wake up honey new callio just dropped`
+	// 				);
+	// 			}
+	// 		});
+	// });
 });
 
 client.on("interactionCreate", (interaction) => {
