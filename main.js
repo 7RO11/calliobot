@@ -191,7 +191,7 @@ rest
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 client.once("ready", () => {
-	cron.schedule("15 8 * * *", () => {
+	cron.schedule("0 9 * * *", () => {
 		axios
 			.get(
 				`https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=UC2bso7dShHmrlH9EzGyH-CQ&maxResults=1&order=date&type=video&key=${process.env.yt}`
