@@ -191,17 +191,25 @@ rest
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 client.once("ready", () => {
-	cron.schedule("10 8 * * *", () => {
+	cron.schedule("10 12 * * *", () => {
 		axios
 			.get(
-				`https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=1&playlistId=PLfSAyHiioVrgrzyUM0s5Edl04hDK4-F0u&key=${process.env.yt}`
+				`https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PLfSAyHiioVrgrzyUM0s5Edl04hDK4-F0u&key=${process.env.yt}`
 			)
 			.then((res) => {
 				let data = res.data.items
+				let link = ""
+				for (let video of data) {
+					if (video.snippet.description == "This video is private.") {
+						continue
+					}
+					link = video.snippet.resourceId.videoId
+					break
+				}
 				for (let channelId of channels) {
 					let channel = client.channels.cache.get(channelId);
 					channel.send(
-						`https://www.youtube.com/watch?v=${data[data.length - 1].snippet.resourceId.videoId
+						`https://www.youtube.com/watch?v=${link
 						} watch it you wont no balls`
 					);
 				}
