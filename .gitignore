@@ -4,3 +4,4 @@ calliobot.code-workspace
 .env
 channels.json
 whitelist.json
+fats
